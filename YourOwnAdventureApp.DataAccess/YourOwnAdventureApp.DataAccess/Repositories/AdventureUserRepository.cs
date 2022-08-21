@@ -14,7 +14,7 @@ namespace YourOwnAdventureApp.DataAccess.Repositories
         }
 
         /// <inheritdoc/>
-        public async Task CreateNewUserAdventure(List<AdventureUserDbModel> dbModels)
+        public async Task<List<AdventureUserDbModel>> CreateNewUserAdventure(List<AdventureUserDbModel> dbModels)
         {
             foreach (var adventure in dbModels)
             {
@@ -23,6 +23,19 @@ namespace YourOwnAdventureApp.DataAccess.Repositories
                 await _dbContext.tblAdventureUser.AddAsync(adventure).ConfigureAwait(false);
             }
             await _dbContext.SaveChangesAsync().ConfigureAwait(false);
+            return dbModels;
+        }
+
+        /// <inheritdoc/>
+        public async Task<List<AdventureUserDbModel>> UpdateUserAdventure(List<AdventureUserDbModel> dbModels)
+        {
+            foreach (var adventure in dbModels)
+            {
+                adventure.UpdatedDate = DateTime.Now;
+                _dbContext.tblAdventureUser.Update(adventure);
+            }
+            await _dbContext.SaveChangesAsync().ConfigureAwait(false);
+            return dbModels;
         }
 
         /// <inheritdoc/>

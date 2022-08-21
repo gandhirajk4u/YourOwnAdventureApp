@@ -10,7 +10,14 @@ namespace YourOwnAdventureApp.DataAccess.Interfaces
         /// </summary>
         /// <param name="dbModel"></param>
         /// <returns>Task</returns>
-        Task CreateNewAdventure(List<AdventureDbModel> dbModel);
+        Task<List<AdventureDbModel>> CreateNewAdventure(List<AdventureDbModel> dbModel);
+
+        /// <summary>
+        /// Update Adventure
+        /// </summary>
+        /// <param name="dbModels"></param>
+        /// <returns></returns>
+        Task<List<AdventureDbModel>> UpdateAdventure(List<AdventureDbModel> dbModels);
 
         /// <summary>
         /// Get Adventures

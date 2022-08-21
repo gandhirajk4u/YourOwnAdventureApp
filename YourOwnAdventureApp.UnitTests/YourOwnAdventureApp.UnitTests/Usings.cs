@@ -1,0 +1,12 @@
+global using AutoMapper;
+global using FluentAssertions;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.Extensions.Logging;
+global using Moq;
+global using Xunit;
+global using YourOwnAdventureApp.Controllers;
+global using YourOwnAdventureApp.DataAccess.Interfaces;
+global using YourOwnAdventureApp.Models.Models;
+global using YourOwnAdventureApp.Service.Interfaces;
+global using YourOwnAdventureApp.Service.Services;

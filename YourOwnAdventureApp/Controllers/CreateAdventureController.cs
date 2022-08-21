@@ -27,13 +27,21 @@ namespace YourOwnAdventureApp.Controllers
         public async Task<IActionResult> GetAdventureByPath([FromRoute] string path)
         {
             _logger.LogInformation("Get adventures request received");
-            var adventures = await _adventureService.GetAdventuresByPath(path).ConfigureAwait(false);
-            if (adventures == null)
+            try
             {
-                return NotFound();
+                var adventures = await _adventureService.GetAdventuresByPath(path).ConfigureAwait(false);
+                if (adventures == null || adventures?.Count == 0)
+                {
+                    return NotFound();
+                }
+                _logger.LogInformation("Get adventures request completed: " + JsonConvert.SerializeObject(adventures));
+                return Ok(adventures);
             }
-            _logger.LogInformation("Get adventures request completed");
-            return Ok(adventures);
+            catch(Exception ex)
+            {
+                _logger.LogError("Error occured on processing the Get Adventure By Path request: " + ex.ToString());
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }           
         }
 
         // GET api/<CreateAdventureController>/5
@@ -41,29 +49,58 @@ namespace YourOwnAdventureApp.Controllers
         public async Task<IActionResult> GetAdventures()
         {
             _logger.LogInformation("Get adventures request received");
-            var adventures = await _adventureService.GetAdventures().ConfigureAwait(false);
-            if (adventures == null)
+            try
             {
-                return NotFound();
+                var adventures = await _adventureService.GetAdventures().ConfigureAwait(false);
+                if (adventures == null || adventures?.Count == 0)
+                {
+                    return NotFound();
+                }
+                _logger.LogInformation("Get adventures request completed: " + JsonConvert.SerializeObject(adventures));
+                return Ok(adventures);
+
             }
-            _logger.LogInformation("Get adventures request completed");
-            return Ok(adventures);
+            catch (Exception ex)
+            {
+                _logger.LogError("Error occured on processing the Get Adventure request: " + ex.ToString());
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
         // POST api/<CreateAdventureController>
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] List<AdventureDto> adventureDto)
         {
-            _logger.LogInformation("Create adventure request received:" + JsonConvert.SerializeObject(adventureDto));
-            await _adventureService.CreateNewAdventure(adventureDto).ConfigureAwait(false);
-            _logger.LogInformation("Create adventure request completed");
-            return Ok();
+            try
+            {
+                _logger.LogInformation("Create adventure request received:" + JsonConvert.SerializeObject(adventureDto));
+                var response = await _adventureService.CreateNewAdventure(adventureDto).ConfigureAwait(false);
+                _logger.LogInformation("Create adventure request completed" + JsonConvert.SerializeObject(response));
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error occured on processing the Get Adventure request: " + ex.ToString());
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
         // PUT api/<CreateAdventureController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] List<AdventureDto> adventureDto)
         {
+            try
+            {
+                _logger.LogInformation("Create adventure request received:" + JsonConvert.SerializeObject(adventureDto));
+                var response = await _adventureService.UpdateAdventure(adventureDto).ConfigureAwait(false);
+                _logger.LogInformation("Create adventure request completed" + JsonConvert.SerializeObject(response));
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error occured on processing the Get Adventure request: " + ex.ToString());
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }

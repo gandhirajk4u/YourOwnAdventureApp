@@ -9,7 +9,14 @@ namespace YourOwnAdventureApp.Service.Interfaces
         /// </summary>
         /// <param name="adventureDtos"></param>
         /// <returns></returns>
-        Task CreateNewAdventure(List<AdventureDto>? adventureDtos);
+        Task<List<AdventureDto>> CreateNewAdventure(List<AdventureDto>? adventureDtos);
+
+        /// <summary>
+        /// Update Adventure Service
+        /// </summary>
+        /// <param name="adventureDtos"></param>
+        /// <returns></returns>
+        Task<List<AdventureDto>> UpdateAdventure(List<AdventureDto>? adventureDtos);
 
         /// <summary>
         /// Get Adventures

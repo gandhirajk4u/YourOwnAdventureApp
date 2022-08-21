@@ -5,7 +5,8 @@ namespace YourOwnAdventureApp.DataAccess.DbContexts
 {
     public class AdventureDbContext : DbContext
     {
-        public AdventureDbContext(DbContextOptions<AdventureDbContext> options) : base(options)
+        public AdventureDbContext(DbContextOptions<AdventureDbContext> options) 
+            : base(options)
         {         
         }
 

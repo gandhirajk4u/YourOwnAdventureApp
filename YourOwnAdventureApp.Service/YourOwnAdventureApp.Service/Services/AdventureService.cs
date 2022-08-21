@@ -14,7 +14,6 @@ namespace YourOwnAdventureApp.Service.Services
 {
     public class AdventureService : IAdventureService
     {
-        private readonly ILogger _logger;
         private readonly IMapper _mapper;
         private readonly IAdventureRepository _repository;
         /// <summary>
@@ -23,18 +22,26 @@ namespace YourOwnAdventureApp.Service.Services
         /// <param name="logger"></param>
         /// <param name="mapper"></param>
         /// <param name="repository"></param>
-        public AdventureService(ILogger<AdventureService> logger, IMapper mapper, IAdventureRepository repository)
+        public AdventureService(IMapper mapper, IAdventureRepository repository)
         {
-            _logger = logger;
             _mapper = mapper;
             _repository = repository;
         }
 
         /// <inheritdoc/>
-        public async Task CreateNewAdventure(List<AdventureDto>? adventureDtos)
+        public async Task<List<AdventureDto>> CreateNewAdventure(List<AdventureDto>? adventureDtos)
         {
             var adventures = _mapper.Map<List<AdventureDbModel>>(adventureDtos);
-            await _repository.CreateNewAdventure(adventures).ConfigureAwait(false);
+            var response = await _repository.CreateNewAdventure(adventures).ConfigureAwait(false);
+            return _mapper.Map<List<AdventureDto>>(response);
+        }
+
+        /// <inheritdoc/>
+        public async Task<List<AdventureDto>> UpdateAdventure(List<AdventureDto>? adventureDtos)
+        {
+            var adventures = _mapper.Map<List<AdventureDbModel>>(adventureDtos);
+            var response = await _repository.UpdateAdventure(adventures).ConfigureAwait(false);
+            return _mapper.Map<List<AdventureDto>>(response);
         }
 
         /// <inheritdoc/>

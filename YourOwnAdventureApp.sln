@@ -5,11 +5,13 @@ VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourOwnAdventureApp", "YourOwnAdventureApp\YourOwnAdventureApp.csproj", "{1DAD0B7D-BCAB-4B9F-B3CA-051DEC3FB091}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourOwnAdventureApp.DataAccess", "YourOwnAdventureApp.DataAccess\YourOwnAdventureApp.DataAccess\YourOwnAdventureApp.DataAccess.csproj", "{5E142B8B-9AF3-4186-8E18-C5606BB8E913}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourOwnAdventureApp.DataAccess", "YourOwnAdventureApp.DataAccess\YourOwnAdventureApp.DataAccess\YourOwnAdventureApp.DataAccess.csproj", "{5E142B8B-9AF3-4186-8E18-C5606BB8E913}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourOwnAdventureApp.Models", "YourOwnAdventureApp.Models\YourOwnAdventureApp.Models\YourOwnAdventureApp.Models.csproj", "{01A68D66-3491-4C7E-9053-BA15F8A13F80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourOwnAdventureApp.Models", "YourOwnAdventureApp.Models\YourOwnAdventureApp.Models\YourOwnAdventureApp.Models.csproj", "{01A68D66-3491-4C7E-9053-BA15F8A13F80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourOwnAdventureApp.Service", "YourOwnAdventureApp.Service\YourOwnAdventureApp.Service\YourOwnAdventureApp.Service.csproj", "{545B75B7-FF5F-448E-811C-9C07ADFDE45A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourOwnAdventureApp.Service", "YourOwnAdventureApp.Service\YourOwnAdventureApp.Service\YourOwnAdventureApp.Service.csproj", "{545B75B7-FF5F-448E-811C-9C07ADFDE45A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourOwnAdventureApp.UnitTests", "YourOwnAdventureApp.UnitTests\YourOwnAdventureApp.UnitTests\YourOwnAdventureApp.UnitTests.csproj", "{8467B9A8-C045-411D-B6B9-2425CBA6EEBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{545B75B7-FF5F-448E-811C-9C07ADFDE45A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{545B75B7-FF5F-448E-811C-9C07ADFDE45A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{545B75B7-FF5F-448E-811C-9C07ADFDE45A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8467B9A8-C045-411D-B6B9-2425CBA6EEBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8467B9A8-C045-411D-B6B9-2425CBA6EEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8467B9A8-C045-411D-B6B9-2425CBA6EEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8467B9A8-C045-411D-B6B9-2425CBA6EEBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

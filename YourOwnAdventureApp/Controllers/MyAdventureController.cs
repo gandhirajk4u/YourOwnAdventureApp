@@ -23,14 +23,22 @@ namespace YourOwnAdventureApp.Controllers
         [HttpGet("{userId}")]
         public async Task<IActionResult> Get([FromRoute] string userId)
         {
-            _logger.LogInformation("Get User adventures request received, UserId: " + userId);
-            var adventures = await _adventureUserService.GetUserAdventureSelections(new Guid(userId)).ConfigureAwait(false);
-            if (adventures == null)
+            _logger.LogInformation("Get adventures request received, UserId: " + userId);
+            try
             {
-                return NotFound();
+                var adventures = await _adventureUserService.GetUserAdventureSelections(new Guid(userId)).ConfigureAwait(false);
+                if (adventures == null || adventures?.Count == 0)
+                {
+                    return NotFound();
+                }
+                _logger.LogInformation("Get adventures request completed");
+                return Ok(adventures);
             }
-            _logger.LogInformation("Get adventures request completed");
-            return Ok(adventures);
+            catch (Exception ex)
+            {
+                _logger.LogError("Error occured on processing the Get Adventure request: " + ex.ToString());
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }
