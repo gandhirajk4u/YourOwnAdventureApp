@@ -1,7 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
-
-namespace YourOwnAdventureApp.Models.Models
+﻿namespace YourOwnAdventureApp.Models.Models
 {
     /// <summary>
     /// Adventure DB Model

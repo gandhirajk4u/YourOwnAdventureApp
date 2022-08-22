@@ -6,7 +6,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>d5f4421f-0996-49f5-b50a-234148f7e2e7</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <DocumentationFile>C:\Personal\Documents\Career\Documents\Study_Docs\YourOwnAdventure\YourOwnAdventureApp\YourOwnAdventureApp\bin\Debug\net6.0\YourOwnAdventureApp.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8" />

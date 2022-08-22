@@ -1,12 +1,3 @@
-using YourOwnAdventureApp.DataAccess.DbContexts;
-using Microsoft.EntityFrameworkCore;
-using YourOwnAdventureApp.Service.Interfaces;
-using YourOwnAdventureApp.Service.Services;
-using YourOwnAdventureApp.DataAccess.Interfaces;
-using YourOwnAdventureApp.DataAccess.Repositories;
-using AutoMapper;
-using YourOwnAdventureApp.MappingProfile;
-
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 
@@ -19,7 +10,11 @@ builder.Services.AddTransient<IAdventureUserRepository, AdventureUserRepository>
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
 
 var config = new MapperConfiguration(cfg =>
 {
@@ -31,7 +26,7 @@ var mapper = config.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
 // Database Context
-var connectionString = configuration.GetConnectionString("AdventureDatabase");
+var connectionString = configuration.GetConnectionString(Constants.DbConnectionName);
 builder.Services.AddDbContextPool<AdventureDbContext>(options =>
 {
     options.UseSqlServer(connectionString);

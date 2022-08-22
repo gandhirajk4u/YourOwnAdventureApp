@@ -1,10 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.Logging;
-using YourOwnAdventureApp.DataAccess.Interfaces;
-using YourOwnAdventureApp.Models.Models;
-using YourOwnAdventureApp.Service.Interfaces;
-
-namespace YourOwnAdventureApp.Service.Services
+﻿namespace YourOwnAdventureApp.Service.Services
 {
     public class AdventureUserService : IAdventureUserService
     {        

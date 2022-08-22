@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using YourOwnAdventureApp.Models.Models;
-
-namespace YourOwnAdventureApp.DataAccess.DbContexts
+﻿namespace YourOwnAdventureApp.DataAccess.DbContexts
 {
     public class AdventureDbContext : DbContext
     {

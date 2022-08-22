@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using YourOwnAdventureApp.DataAccess.DbContexts;
-using YourOwnAdventureApp.DataAccess.Interfaces;
-using YourOwnAdventureApp.Models.Models;
-
-namespace YourOwnAdventureApp.DataAccess.Repositories
+﻿namespace YourOwnAdventureApp.DataAccess.Repositories
 {
     public class AdventureRepository : IAdventureRepository
     {

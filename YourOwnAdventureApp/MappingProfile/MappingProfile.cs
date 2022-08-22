@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using YourOwnAdventureApp.Models.Models;
-
-namespace YourOwnAdventureApp.MappingProfile
+﻿namespace YourOwnAdventureApp.MappingProfile
 {
     public class MappingProfile : Profile
     {

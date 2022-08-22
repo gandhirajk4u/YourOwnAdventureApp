@@ -50,6 +50,31 @@
             ThenSuccessResponseIsReturned();
         }
 
+        /// <summary>
+        /// Test Case for Get Adventure for User Not Found
+        /// </summary>
+        [Fact]
+        public void GetRequestReturnsNullUserAdvanture()
+        {
+            GivenTakeAdventureController();
+            GivenAdventureUserDbModelObject();
+            GivenAdventureUserNullFromRepository();
+            WhenGetUserAdventuresIsCalled();
+            ThenNullResponseIsReturned();
+        }
+
+        /// <summary>
+        /// Test Case for Get Adventure  for User with Invalid Input
+        /// </summary>
+        [Fact]
+        public void GetRequestReturnsUserAdvantureWithInvalidInput()
+        {
+            GivenTakeAdventureController();
+            GivenAdventureUserDbModelObject();
+            WhenGetUserAdventuresIsCalledWithInvalidInput();
+            ThenNullResponseIsReturned();
+        }
+
         private void GivenTakeAdventureController()
         {
             var iloggerMock = new Mock<ILogger<TakeAdventureController>>();
@@ -82,6 +107,11 @@
             _adventureUserService.Setup(x => x.GetUsersAdventure(new Guid("1b5db65f-7fb3-4363-8796-ab60507dd90e"))).Returns(Task.FromResult(new List<UserAdventureResponseModel>() { new UserAdventureResponseModel { AdventureId = new Guid("8dbd24f7-ffcd-418b-95ef-ef0c6f23bd0d"), UserId = new Guid("1b5db65f-7fb3-4363-8796-ab60507dd90e"), Name = "Skydiving", Path = ",Skydiving" } }));
         }
 
+        private void GivenAdventureUserNullFromRepository()
+        {
+            _adventureUserService.Setup(x => x.GetUsersAdventure(new Guid("1b5db65f-7fb3-4363-8796-ab60507dd90e"))).Returns(Task.FromResult(new List<UserAdventureResponseModel>()));
+        }
+
         private void WhenTakeUpdateAdventureIsCalled(List<AdventureUserDto> adventureDto)
         {
             _result = _adventureController.Update(adventureDto);
@@ -97,11 +127,22 @@
             _result = _adventureController.Get("1b5db65f-7fb3-4363-8796-ab60507dd90e");
         }
 
+        private void WhenGetUserAdventuresIsCalledWithInvalidInput()
+        {
+            _result = _adventureController.Get("Test");
+        }
+
         private async void ThenSuccessResponseIsReturned()
         {
             var result = await _result.ConfigureAwait(false) as OkObjectResult;
             result.Should().NotBeNull();
             result.StatusCode.Should().Be(StatusCodes.Status200OK);
+        }
+
+        private async void ThenNullResponseIsReturned()
+        {
+            var result = await _result.ConfigureAwait(false) as OkObjectResult;
+            result.Should().BeNull();            
         }
     }
 }

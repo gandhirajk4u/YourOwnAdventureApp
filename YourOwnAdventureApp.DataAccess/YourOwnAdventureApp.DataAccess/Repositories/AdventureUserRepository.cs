@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using YourOwnAdventureApp.DataAccess.DbContexts;
-using YourOwnAdventureApp.DataAccess.Interfaces;
-using YourOwnAdventureApp.Models.Models;
-
-namespace YourOwnAdventureApp.DataAccess.Repositories
+﻿namespace YourOwnAdventureApp.DataAccess.Repositories
 {
     public  class AdventureUserRepository : IAdventureUserRepository
     {
@@ -29,11 +24,15 @@ namespace YourOwnAdventureApp.DataAccess.Repositories
         /// <inheritdoc/>
         public async Task<List<AdventureUserDbModel>> UpdateUserAdventure(List<AdventureUserDbModel> dbModels)
         {
+            string userId = string.Empty;
             foreach (var adventure in dbModels)
             {
-                adventure.UpdatedDate = DateTime.Now;
-                _dbContext.tblAdventureUser.Update(adventure);
+                adventure.CreatedDate = DateTime.Now;
+                userId = adventure.UserId.ToString();
+                await _dbContext.tblAdventureUser.AddAsync(adventure).ConfigureAwait(false);
             }
+            var objtoDelete = await (from deleteObj in _dbContext.tblAdventureUser where deleteObj.UserId == new Guid(userId) select deleteObj).AsNoTracking().ToListAsync().ConfigureAwait(false);
+            _dbContext.tblAdventureUser.RemoveRange(objtoDelete);
             await _dbContext.SaveChangesAsync().ConfigureAwait(false);
             return dbModels;
         }

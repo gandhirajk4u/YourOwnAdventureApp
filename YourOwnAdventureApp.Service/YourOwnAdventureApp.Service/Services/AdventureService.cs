@@ -1,16 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using YourOwnAdventureApp.DataAccess.Interfaces;
-using YourOwnAdventureApp.DataAccess.Repositories;
-using YourOwnAdventureApp.Models.Models;
-using YourOwnAdventureApp.Service.Interfaces;
-
-namespace YourOwnAdventureApp.Service.Services
+﻿namespace YourOwnAdventureApp.Service.Services
 {
     public class AdventureService : IAdventureService
     {

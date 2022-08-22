@@ -1,7 +1,4 @@
-﻿using System;
-using YourOwnAdventureApp.Models.Models;
-
-namespace YourOwnAdventureApp.DataAccess.Interfaces
+﻿namespace YourOwnAdventureApp.DataAccess.Interfaces
 {
     public interface IAdventureRepository
     {

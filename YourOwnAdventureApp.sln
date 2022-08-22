@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourOwnAdventureApp.Models"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourOwnAdventureApp.Service", "YourOwnAdventureApp.Service\YourOwnAdventureApp.Service\YourOwnAdventureApp.Service.csproj", "{545B75B7-FF5F-448E-811C-9C07ADFDE45A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourOwnAdventureApp.UnitTests", "YourOwnAdventureApp.UnitTests\YourOwnAdventureApp.UnitTests\YourOwnAdventureApp.UnitTests.csproj", "{8467B9A8-C045-411D-B6B9-2425CBA6EEBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourOwnAdventureApp.UnitTests", "YourOwnAdventureApp.UnitTests\YourOwnAdventureApp.UnitTests\YourOwnAdventureApp.UnitTests.csproj", "{8467B9A8-C045-411D-B6B9-2425CBA6EEBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BC2085DD-6AB0-4F33-ABDB-8107D5EC77E6}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

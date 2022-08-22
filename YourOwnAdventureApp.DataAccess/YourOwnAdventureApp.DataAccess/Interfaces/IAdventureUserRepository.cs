@@ -1,6 +1,4 @@
-﻿using YourOwnAdventureApp.Models.Models;
-
-namespace YourOwnAdventureApp.DataAccess.Interfaces
+﻿namespace YourOwnAdventureApp.DataAccess.Interfaces
 {
     public interface IAdventureUserRepository
     {
@@ -12,7 +10,7 @@ namespace YourOwnAdventureApp.DataAccess.Interfaces
         Task<List<AdventureUserDbModel>> CreateNewUserAdventure(List<AdventureUserDbModel> dbModels);
 
         /// <summary>
-        /// Update Adventure
+        /// Delete Adventure
         /// </summary>
         /// <param name="dbModels"></param>
         /// <returns></returns>

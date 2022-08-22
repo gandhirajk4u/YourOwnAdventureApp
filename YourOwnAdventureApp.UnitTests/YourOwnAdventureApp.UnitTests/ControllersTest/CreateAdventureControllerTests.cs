@@ -6,6 +6,7 @@
         private Task<IActionResult> _result;
         private Mock<IAdventureService> _adventureService;
         private AdventureDto _adventureDto;
+
         /// <summary>
         /// Test Case for Create Adventure
         /// </summary>
@@ -54,6 +55,20 @@
         }
 
         /// <summary>
+        /// Test Case for Get Adventure Not Found
+        /// </summary>
+        [Fact]
+        public void GetRequestReturnsAdventureNotFound()
+        {
+            GivenCreateAdventureController();
+            GivenAdventureDbModelObject();
+            GivenAdventureEmptyFromRepository();
+            WhenGetAdventuresIsCalled();
+            ThenNotFoudResponseIsReturned();
+        }       
+        
+
+        /// <summary>
         /// Test Case for Get Adventure By Path
         /// </summary>
         [Fact]
@@ -65,6 +80,19 @@
             WhenGetAdventuresByPathIsCalled();
             ThenSuccessResponseIsReturned();
 
+        }
+
+        /// <summary>
+        /// Test Case for Get Adventure By Path Not Found
+        /// </summary>
+        [Fact]
+        public void GetRequestReturnsAdventureByPathNotFound()
+        {
+            GivenCreateAdventureController();
+            GivenAdventureDbModelObject();
+            GivenAdventureByPathNullFromRepository();
+            WhenGetAdventuresByPathIsCalled();
+            ThenNotFoudResponseIsReturned();
         }
 
         private void GivenCreateAdventureController()
@@ -101,6 +129,11 @@
             result.StatusCode.Should().Be(StatusCodes.Status200OK);
         }
 
+        private async void ThenNotFoudResponseIsReturned()
+        {
+            var result = await _result.ConfigureAwait(false) as OkObjectResult;
+            result.Should().BeNull();        
+        }
 
         private void GivenAdventureDbModelObject()
         {
@@ -117,15 +150,25 @@
             _adventureService.Setup(x => x.GetAdventures()).Returns(Task.FromResult(new List<AdventureResponseModel>() { new AdventureResponseModel { AdventureId = new Guid("8dbd24f7-ffcd-418b-95ef-ef0c6f23bd0d") , Name = "Skydiving", Path = ",Skydiving" } }));
         }
 
-        private void WhenGetAdventuresIsCalled()
+        private void GivenAdventureEmptyFromRepository()
         {
-            _result = _adventureController.GetAdventures();
+            _adventureService.Setup(x => x.GetAdventures()).Returns(Task.FromResult(new List<AdventureResponseModel>()));
         }
 
         private void GivenAdventureByPathFromRepository()
         {
             _adventureService.Setup(x => x.GetAdventuresByPath(",Skydiving")).Returns(Task.FromResult(new List<AdventureResponseModel>() { new AdventureResponseModel { AdventureId = new Guid("8dbd24f7-ffcd-418b-95ef-ef0c6f23bd0d"), Name = "Skydiving", Path = ",Skydiving" } }));
         }
+
+        private void GivenAdventureByPathNullFromRepository()
+        {
+            _adventureService.Setup(x => x.GetAdventuresByPath(",Skydiving")).Returns(Task.FromResult(new List<AdventureResponseModel>()));
+        }
+
+        private void WhenGetAdventuresIsCalled()
+        {
+            _result = _adventureController.GetAdventures();
+        }        
 
         private void WhenGetAdventuresByPathIsCalled()
         {

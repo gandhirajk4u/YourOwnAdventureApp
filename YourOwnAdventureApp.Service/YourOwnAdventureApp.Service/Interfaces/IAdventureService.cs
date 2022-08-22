@@ -1,6 +1,4 @@
-﻿using YourOwnAdventureApp.Models.Models;
-
-namespace YourOwnAdventureApp.Service.Interfaces
+﻿namespace YourOwnAdventureApp.Service.Interfaces
 {
     public interface IAdventureService
     {

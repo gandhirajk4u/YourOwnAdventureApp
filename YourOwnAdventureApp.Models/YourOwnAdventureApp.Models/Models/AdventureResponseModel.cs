@@ -1,5 +1,4 @@
-﻿
-namespace YourOwnAdventureApp.Models.Models
+﻿namespace YourOwnAdventureApp.Models.Models
 {
     public class AdventureResponseModel
     {
